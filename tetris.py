@@ -90,7 +90,7 @@ class Tetris:
     def load_high_score(self):
         # Загрузка максимального счета из файла
         try:
-            with open('max_score.txt', 'r') as f:
+            with open('data/max_score.txt', 'r') as f:
                 return int(f.read().strip())
         except FileNotFoundError:
             return 0  # Если файл не найден, возвращаем 0
@@ -99,7 +99,7 @@ class Tetris:
 
     def save_score(self, score):
         # Сохранение счета в базу данных
-        conn = sqlite3.connect('tetris_results.db')
+        conn = sqlite3.connect('data/tetris_results.db')
         cursor = conn.cursor()
         cursor.execute('INSERT INTO result (score) VALUES (?)', (score,))
         conn.commit()
